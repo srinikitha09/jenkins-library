@@ -127,12 +127,12 @@ void call(Map parameters = [:]) {
 private static void inferBuildTool(script, config) {
     // For backwards compatibility, build tool inference must be enabled via inferBuildTool setting
     boolean inferBuildTool = config?.inferBuildTool
-    echo "value is xxx: ${inferBuildTool}"
+    script.echo "value is xxx: ${inferBuildTool}"
 
     if (inferBuildTool) {
        
         boolean isMtaProject = script.fileExists('mta.yaml')
-        echo "value is xx: ${isMtaProject}"
+        script.echo "value is xx: ${isMtaProject}"
         def isMavenProject = script.fileExists('pom.xml')
         def isNpmProject = script.fileExists('package.json')
 
