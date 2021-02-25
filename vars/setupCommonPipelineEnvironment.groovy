@@ -129,7 +129,9 @@ private static void inferBuildTool(script, config) {
     boolean inferBuildTool = config?.inferBuildTool
 
     if (inferBuildTool) {
+       
         boolean isMtaProject = script.fileExists('mta.yaml')
+        echo "value is xx: ${isMtaProject}"
         def isMavenProject = script.fileExists('pom.xml')
         def isNpmProject = script.fileExists('package.json')
 
