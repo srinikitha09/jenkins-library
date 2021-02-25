@@ -131,6 +131,11 @@ void call(Map parameters = [:]) {
         if (!skipCheckout) {
             scmInfo = checkout(parameters.checkoutMap ?: scm)
         }
+        
+                 sh """#!/bin/bash -e
+                 echo 'before setupcommonpipelineenv'
+                   ls -all
+                   """
 
         setupCommonPipelineEnvironment(script: script, customDefaults: parameters.customDefaults, scmInfo: scmInfo,
             configFile: parameters.configFile, customDefaultsFromFiles: parameters.customDefaultsFromFiles)
