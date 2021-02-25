@@ -43,6 +43,7 @@ void call(Map parameters = [:], body) {
             environment.add("SIDECAR_IMAGE=${config.sidecarImage}")
         }
         if (Boolean.valueOf(env.ON_K8S) && (containerMap.size() > 0 || config.runStageInPod)) {
+            echo "xxx:In if part"
             environment.add("POD_NAME=${stageName}")
             withEnv(environment) {
                 dockerExecuteOnKubernetes(script: script, containerMap: containerMap, stageName: stageName) {
@@ -50,6 +51,7 @@ void call(Map parameters = [:], body) {
                 }
             }
         } else {
+            echo "xxx:In else part"
             withEnvWrapper(environment) {
                 node(config.nodeLabel) {
                     executeStage(script, body, stageName, config, utils, parameters.telemetryDisabled)
@@ -90,6 +92,11 @@ private void stageLocking(Map config, Closure body) {
 }
 
 private void executeStage(script, originalStage, stageName, config, utils, telemetryDisabled = false) {
+    
+                 sh """#!/bin/bash -e
+                 echo 'xxx: inside executestge'
+                   ls -al
+                   """
     boolean projectExtensions
     boolean globalExtensions
     def startTime = System.currentTimeMillis()
