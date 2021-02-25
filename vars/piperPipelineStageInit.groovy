@@ -134,6 +134,10 @@ void call(Map parameters = [:]) {
 
         setupCommonPipelineEnvironment(script: script, customDefaults: parameters.customDefaults, scmInfo: scmInfo,
             configFile: parameters.configFile, customDefaultsFromFiles: parameters.customDefaultsFromFiles)
+        
+         sh """#!/bin/bash -e
+                   ls -all
+                   """
 
         Map config = ConfigurationHelper.newInstance(this)
             .loadStepDefaults()
