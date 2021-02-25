@@ -59,7 +59,7 @@ void call(Map parameters = [:], body) {
                    ls -al
                    pwd
                    """
-                node(config.nodeLabel) {
+                //node(config.nodeLabel) {
                                      sh """#!/bin/bash -e
                  echo 'xxx: inside node label'
                    ls -al
@@ -67,7 +67,7 @@ void call(Map parameters = [:], body) {
                    """
                     echo "xxx: label is ${config.nodeLabel}"
                     executeStage(script, body, stageName, config, utils, parameters.telemetryDisabled)
-                }
+                //}
             }
         }
     }
