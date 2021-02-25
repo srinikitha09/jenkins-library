@@ -53,7 +53,13 @@ void call(Map parameters = [:], body) {
         } else {
             echo "xxx:In else part"
             withEnvWrapper(environment) {
+                    
+                 sh """#!/bin/bash -e
+                 echo 'xxx: before call to node'
+                   ls -al
+                   """
                 node(config.nodeLabel) {
+                    echo "xxx: label is ${config.nodeLabel}"
                     executeStage(script, body, stageName, config, utils, parameters.telemetryDisabled)
                 }
             }
