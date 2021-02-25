@@ -116,6 +116,7 @@ void call(Map parameters = [:]) {
 
         def scmInfo = parameters.scmInfo
         if (scmInfo) {
+            script.echo "xxx :Inside scmInfo"
             setGitUrlsOnCommonPipelineEnvironment(script, scmInfo.GIT_URL)
             script.commonPipelineEnvironment.setGitCommitId(scmInfo.GIT_COMMIT)
         }
