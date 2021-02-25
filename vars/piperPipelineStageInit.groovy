@@ -122,8 +122,17 @@ void call(Map parameters = [:]) {
     }
 
     def stageName = StageNameProvider.instance.getStageName(script, parameters, this)
+    
+                 sh """#!/bin/bash -e
+                 echo 'xxx: before piperstagewrapper'
+                   ls -all
+                   """
 
     piperStageWrapper (script: script, stageName: stageName, stashContent: [], ordinal: 1, telemetryDisabled: true) {
+                     sh """#!/bin/bash -e
+                 echo 'right after entering piperstagewrapper step'
+                   ls -all
+                   """
         def skipCheckout = parameters.skipCheckout
         if (skipCheckout != null && !(skipCheckout instanceof Boolean)) {
             error "[${STEP_NAME}] Parameter skipCheckout has to be of type boolean. Instead got '${skipCheckout.class.getName()}'"
