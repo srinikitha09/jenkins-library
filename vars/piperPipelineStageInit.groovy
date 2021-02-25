@@ -107,6 +107,12 @@ import static com.sap.piper.Prerequisites.checkScript
 void call(Map parameters = [:]) {
     
     echo "xx: entering inside the call piperpipleinestageinit"
+    
+    
+                 sh """#!/bin/bash -e
+                 echo 'right after entering piperpipleineinit step'
+                   ls -all
+                   """
 
     def script = checkScript(this, parameters) ?: this
     def utils = parameters.juStabUtils ?: new Utils()
