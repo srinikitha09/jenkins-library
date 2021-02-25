@@ -57,8 +57,14 @@ void call(Map parameters = [:], body) {
                  sh """#!/bin/bash -e
                  echo 'xxx: before call to node'
                    ls -al
+                   pwd
                    """
                 node(config.nodeLabel) {
+                                     sh """#!/bin/bash -e
+                 echo 'xxx: inside node label'
+                   ls -al
+                   pwd
+                   """
                     echo "xxx: label is ${config.nodeLabel}"
                     executeStage(script, body, stageName, config, utils, parameters.telemetryDisabled)
                 }
