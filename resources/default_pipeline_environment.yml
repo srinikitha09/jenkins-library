@@ -353,11 +353,6 @@ steps:
       credentialsId: 'CI_CREDENTIALS_ID'
       credentialType: 'UsernamePassword'
       portalLandscape: "cloudnwcportal"
-  multicloudDeploy:
-    cfTargets: []
-    neoTargets: []
-    enableZeroDowntimeDeployment: false
-    parallelExecution: false
   newmanExecute:
     dockerImage: 'node:lts-stretch'
     failOnError: true
